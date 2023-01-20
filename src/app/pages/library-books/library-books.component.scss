@@ -1,0 +1,44 @@
+.content {
+    .books-section {
+        .book {
+            display: flex;
+            align-items: flex-start;
+            margin-top: 1.5rem;
+            p {
+                margin: 0;
+                margin-bottom: 10px;
+                font-size: 12px;
+            }
+            img {
+                height: var(--default-book-height);
+                width: var(--default-book-width);
+            }
+
+            .book-content {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                height: var(--default-book-height);
+
+                max-height: 150px;
+
+                .book-description {
+                    margin-left: 10px;
+
+                    .title {
+                        font-size: 14px;
+                        font-weight: 700;
+                    }
+
+                    .author {
+                        font-size: 12px;
+                    }
+
+                    .editor {
+                        font-size: 12px;
+                    }
+                }
+            }
+        }
+    }
+}

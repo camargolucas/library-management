@@ -4,6 +4,8 @@ import { BooksService } from 'src/app/services/books.service';
 import { getStorage, ref } from '@firebase/storage'
 import { environment } from 'src/environments/environment';
 import packageJson from 'package.json';
+import { Router } from '@angular/router';
+
 
 
 @Component({
@@ -16,7 +18,7 @@ export class HomeComponent implements OnInit {
   books: Array<Books> = [];
   version: string = packageJson.version;
 
-  constructor(private bookService: BooksService) { }
+  constructor(private bookService: BooksService, private router: Router) { }
 
 
   ngOnInit(): void {
@@ -25,13 +27,8 @@ export class HomeComponent implements OnInit {
     });
   }
 
-
-  firebaseDownload() {
-    const storage = getStorage();
-    const pathRef = ref(storage, 'books/cristianismo_puro_e_simples.webp')
-
-    const gsReference = ref(storage, 'gs://library-app-f26ca.appspot.com/books/cristianismo_puro_e_simples.webp')
-    const httpsReference = ref(storage, 'https://firebasestorage.googleapis.com/v0/b/library-app-f26ca.appspot.com/o/books%2Fcristianismo_puro_e_simples.webp')
+  navigate(path:string){
+      this.router.navigate([`/${path}`]);
   }
 
 }

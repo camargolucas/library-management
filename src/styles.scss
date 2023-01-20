@@ -19,6 +19,8 @@
     --btn-bg-color: #007daa;
     --btn-bg-invisible:#f7f7f700;
     --primary-color: #007daa;
+    --default-book-width:100px;
+    --default-book-height:150px;
   }
   
   
@@ -37,6 +39,19 @@
   h4,
   p {
     color: var(--text-color);
+
+    &.primary{
+      color: var(--primary-color);
+    }
+
+    &.back-button{
+      color: var(--primary-color);
+      margin:0;
+      font-size:14px;
+      position: absolute;
+      top: 10px;
+      left: 5px;
+    }
   }
   button {
     padding: 5px;

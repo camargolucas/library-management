@@ -1,0 +1,26 @@
+<div class="content">
+    <p (click)="back()" class="back-button">Voltar</p>
+
+    <section class="search-section">
+        <h4>Busque um livro</h4>
+        <input>
+    </section>
+
+    <section class="books-section">
+        <div *ngFor="let book of books" class="book">
+            <img src="{{URL_BUCKET}}/books%2F{{book.frontImage}}.webp?alt=media">
+            <div class="book-content">
+                <div class="book-description">
+                    <p class="title"> {{book?.name}} </p>
+                    <p class="author">por <i>{{book?.author}}</i> </p>
+                    <p>{{book?.pages}} páginas.</p>
+
+                </div>
+                <div class="book-description bottom">
+                    <p>editora <i><b>{{book?.editor}}</b></i></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</div>
