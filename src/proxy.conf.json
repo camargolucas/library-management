@@ -1,0 +1,11 @@
+{
+    "/api-url": {
+      "target": "https://library-app-f26ca.web.app",
+      "secure": true,
+      "changeOrigin": true,
+      "logLevel": "debug",
+      "pathRewrite": {
+          "^/api-url": ""
+      }
+  }   
+}

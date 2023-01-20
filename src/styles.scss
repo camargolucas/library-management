@@ -1,0 +1,57 @@
+@font-face {
+    font-family: 'IBM Plex Mono';
+    src: url('./assets/fonts/IBM/IBMPlexMono-Regular.ttf');
+  
+    font-family: 'IBM Plex Mono Bold';
+    src: url('./assets/fonts/IBM/IBMPlexMono-Bold.ttf');
+  
+    
+    font-family: 'IBM Plex Mono Italic';
+    src: url('./assets/fonts/IBM/IBMPlexMono-Italic.ttf');
+  }
+  
+  
+  /* You can add global styles to this file, and also import other style files */
+  :root {
+    --text-color: #eee;
+    --bkg-color: #252222;
+    --btn-txt-color: #eee;
+    --btn-bg-color: #007daa;
+    --btn-bg-invisible:#f7f7f700;
+    --primary-color: #007daa;
+  }
+  
+  
+  * {
+    font-family: 'IBM Plex Mono', 'Courier New', monospace;
+  }
+  
+  body {
+    background-color: var(--bkg-color);
+    overflow-x: hidden;
+  }
+  
+  h1,
+  h2,
+  h3,
+  h4,
+  p {
+    color: var(--text-color);
+  }
+  button {
+    padding: 5px;
+    border: none;
+    border-radius: 8px;
+    color: var(--btn-txt-color);
+    background-color: var(--btn-bg-color);
+  
+  
+    &.invisible{
+      padding: 5px;
+      border: none; 
+      color: var(--btn-txt-color);
+      background-color: var(--btn-bg-invisible);
+    }
+  }
+  
+  

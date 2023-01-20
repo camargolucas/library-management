@@ -1,0 +1,37 @@
+<div class="content">
+
+    <section class="library-books-section">
+        <h4>Livros disponiveis na nossa biblioteca</h4>
+        <div class="books">
+            <div *ngFor="let book of books" class="highlight-books">
+
+                <img src="{{URL_BUCKET}}/books%2F{{book.frontImage}}.webp?alt=media">
+
+            </div>
+        </div>
+        <button class="more invisible">
+            Veja mais
+        </button>
+    </section>
+
+    <section class="my-books">
+        <h4>Meus livros</h4>
+        <div class="books">
+            <div *ngFor="let book of books" class="highlight-books">
+
+                <img src="{{URL_BUCKET}}/books%2F{{book.frontImage}}.webp?alt=media">
+
+            </div>
+        </div>
+        <button class="more invisible">
+            Veja mais
+        </button>
+    </section>
+    <section>
+        <div class="image-logo">
+            <img class="logo-ipvn" title="logo-ipvn" src="/assets/images/ipvn-solo-logo.png">
+            <p>v{{version}}</p>
+        </div>
+    </section>
+
+</div>
