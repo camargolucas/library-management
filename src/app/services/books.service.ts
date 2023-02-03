@@ -14,7 +14,8 @@ export class BooksService {
   constructor(private http: HttpClient) { }
 
 
-  getBooks():Observable<Books[]>{
+  getBooks(page:number, limit:number):Observable<Books[]>{
+    
     return this.http.get<Array<Books>>(`${this.API_URL}/books`);
   }
 

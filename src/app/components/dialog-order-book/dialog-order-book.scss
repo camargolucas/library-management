@@ -1,0 +1,25 @@
+
+
+
+.buttons{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2rem;
+}
+
+p{
+    font-size: 12px;
+}
+
+.increment-button{
+    font-size: 12px;
+    margin-left: 5px;
+}
+
+.date-picker-input{
+    font-size: 12px;
+    border-radius: 5px;
+    outline: none;
+    border: none;
+    padding: 5px;
+}

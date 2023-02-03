@@ -1,23 +1,33 @@
-<div class="content">
+
+
+
+<div *ngIf="loading" class="loader-content">
+    <div class="custom-loader"></div>
+</div>
+<div class="content default-content">
+
     <p (click)="back()" class="back-button">Voltar</p>
 
     <section class="search-section">
         <h4>Busque um livro</h4>
-        <input>
+        <input class="filter-input" placeholder="Digite o livro que deseja" (keyup)="filterBooks($event)">
     </section>
 
-    <section class="books-section">
-        <div *ngFor="let book of books" class="book">
-            <img src="{{URL_BUCKET}}/books%2F{{book.frontImage}}.webp?alt=media">
+    <section *ngIf="!loading" class="books-section">
+
+        <div (click)="openDialog()" *ngFor="let book of filteredBooks" class="book">
+            <div class="book-image-content">
+                <img [ngClass]="{'not-avaible': !book.avaible}" src="{{URL_BUCKET}}/books%2F{{book.frontImage}}.webp?alt=media">
+            </div>
             <div class="book-content">
                 <div class="book-description">
                     <p class="title"> {{book?.name}} </p>
                     <p class="author">por <i>{{book?.author}}</i> </p>
                     <p>{{book?.pages}} páginas.</p>
-
-                </div>
-                <div class="book-description bottom">
                     <p>editora <i><b>{{book?.editor}}</b></i></p>
+                </div>
+                <div *ngIf="!book.avaible" class="avaible-book pointer">
+                    <p>Livro já emprestado</p>
                 </div>
             </div>
         </div>

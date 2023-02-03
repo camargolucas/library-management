@@ -1,11 +1,16 @@
 <div class="content">
-
     <section class="library-books-section">
         <h4>Livros disponiveis na nossa biblioteca</h4>
+
+
         <div class="books">
+            <div *ngIf="loading" class="loader-content">
+                <div class="custom-loader"></div>
+            </div>
+
             <div *ngFor="let book of books" class="highlight-books">
 
-                <img src="{{URL_BUCKET}}/books%2F{{book.frontImage}}.webp?alt=media">
+                <img *ngIf="!loading" src="{{URL_BUCKET}}/books%2F{{book.frontImage}}.webp?alt=media">
 
             </div>
         </div>
@@ -17,6 +22,9 @@
     <section class="my-books">
         <h4>Meus livros</h4>
         <div class="books">
+            <div *ngIf="loading" class="loader-content">
+                <div class="custom-loader"></div>
+            </div>
             <div *ngFor="let book of books" class="highlight-books">
 
                 <img src="{{URL_BUCKET}}/books%2F{{book.frontImage}}.webp?alt=media">

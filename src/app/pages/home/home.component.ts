@@ -17,18 +17,27 @@ export class HomeComponent implements OnInit {
   URL_BUCKET = environment.URL_BUCKET;
   books: Array<Books> = [];
   version: string = packageJson.version;
+  page:number = 1;
+  limit:number=5;
+
+  loading = false;
 
   constructor(private bookService: BooksService, private router: Router) { }
 
+  setLoading(loading:boolean){
+    this.loading = loading;
+  }
 
   ngOnInit(): void {
-    this.bookService.getBooks().subscribe(books => {
+    this.setLoading(true);
+    this.bookService.getBooks(this.page, this.limit).subscribe(books => {
+      this.setLoading(false)
       this.books = books;
-    });
+    }, error => this.setLoading(false));
   }
 
   navigate(path:string){
-      this.router.navigate([`/${path}`]);
+      this.router.navigate([`/${path}`], { replaceUrl: true });
   }
 
 }
