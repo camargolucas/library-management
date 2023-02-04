@@ -5,6 +5,7 @@ import { BooksService } from 'src/app/services/books.service';
 import { environment } from 'src/environments/environment';
 import { MatDialog } from '@angular/material/dialog'
 import { DialogOrderBook } from 'src/app/components/dialog-order-book/dialog-order-book.component';
+import { UtilsService } from 'src/app/services/utils.service';
 
 
 @Component({
@@ -14,16 +15,16 @@ import { DialogOrderBook } from 'src/app/components/dialog-order-book/dialog-ord
 })
 export class LibraryBooksComponent implements OnInit {
   books: Array<Books> = [];
+  filteredBooks: Array<Books> = [];
   URL_BUCKET = environment.URL_BUCKET;
   page: number = 1;
-  limit: number = 2;
-
+  limit: number = 5;
   inputText: any;
-
   loading: boolean = false;
 
 
-  constructor(private router: Router, private booksService: BooksService, public dialog: MatDialog) { }
+  constructor(private router: Router, private booksService: BooksService, public dialog: MatDialog,
+    private utilsService:UtilsService) { }
 
   ngOnInit(): void {
     this.loadBooks();
@@ -42,13 +43,19 @@ export class LibraryBooksComponent implements OnInit {
       });
   }
 
-  openDialog(): void {
+  openDialog(book:Books): void {
     const dialogRef = this.dialog.open(DialogOrderBook, {
-
+      data: {
+        book: book
+      }
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      this.loadBooks();
+      if(result && result['modifiedCount'] > 0){
+        this.loadBooks();
+        this.utilsService.openSnackBar("Livro emprestado com sucesso!")
+      };
+      
     });
   }
 
@@ -59,7 +66,7 @@ export class LibraryBooksComponent implements OnInit {
   }
 
 
-  filteredBooks: Array<Books> = [];
+
   public filterBooks(event: any) {
 
     const inputValue = event.target.value

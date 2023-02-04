@@ -1,10 +1,10 @@
 <div mat-dialog-content>
-    <p>Escolha uma data prevista de <b>devolução</b></p>
-    <input [min]="minDate" [max]="maxDate.format('YYYY-MM-DD')" [value]="actualDate.format('YYYY-MM-DD')"
+    <p>Data de devolução prevista para o livro <b>{{book.name}}</b></p>
+    <input [disabled]="true" [value]="actualDate.format('YYYY-MM-DD')"
         class="date-picker-input" type="date">
-        <button class="increment-button" [disabled]="this.actualDate.toDate() >= this.maxDate.toDate()" (click)="incrementDate()">+ 1 mês</button>
+        <!-- <button class="increment-button" [disabled]="this.actualDate.toDate() >= this.maxDate.toDate()" (click)="incrementDate()">+ 1 mês</button> -->
 </div>
 <div class="buttons" mat-dialog-actions>
     <button (click)="onNoClick()" class="invisible">Cancelar</button>
-    <button cdkFocusInitial>Pegar emprestado</button>
+    <button [disabled]="saving" (click)="loanBook()" cdkFocusInitial>Pegar emprestado</button>
 </div>

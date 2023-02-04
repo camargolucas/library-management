@@ -15,7 +15,7 @@
 
     <section *ngIf="!loading" class="books-section">
 
-        <div (click)="openDialog()" *ngFor="let book of filteredBooks" class="book">
+        <div (click)="openDialog(book)" *ngFor="let book of filteredBooks" class="book">
             <div class="book-image-content">
                 <img [ngClass]="{'not-avaible': !book.avaible}" src="{{URL_BUCKET}}/books%2F{{book.frontImage}}.webp?alt=media">
             </div>

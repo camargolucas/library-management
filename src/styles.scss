@@ -22,9 +22,14 @@
     --default-book-width:100px;
     --default-book-height:150px;
   }
+
+  input{
+    touch-action: manipulation;
+  }
   
   
   * {
+    touch-action: manipulation;
     font-family: 'IBM Plex Mono', 'Courier New', monospace;
   }
   
@@ -60,6 +65,7 @@
     color: var(--btn-txt-color);
     background-color: var(--btn-bg-color);
     font-size: 12px;
+    touch-action: manipulation;
 
     &:disabled{
      background: #8d8d8d !important;
@@ -164,7 +170,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   max-height: 100%;
 }
 .cdk-overlay-dark-backdrop{
-  background: rgba(0,0,0,.32);
+  background: rgba(0,0,0,.52);
 }
 .cdk-overlay-backdrop{
   position: absolute;
@@ -182,4 +188,20 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .cdk-overlay-backdrop.cdk-overlay-backdrop-showing{
   opacity: 1;
+}
+
+
+
+.mat-snack-bar-handset{
+  background: none;
+}
+
+.mat-snack-bar-handset .mat-snack-bar-container{
+  margin: 1rem !important;
+  background: var(--primary-color);
+  height: 35px;
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+  min-height: 0 !important;
 }
