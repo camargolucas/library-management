@@ -19,8 +19,9 @@ export class HomeComponent implements OnInit {
   version: string = packageJson.version;
   page:number = 1;
   limit:number=5;
-
   loading = false;
+  myBooks: Array<Books> = [];
+
 
   constructor(private bookService: BooksService, private router: Router) { }
 
@@ -29,11 +30,19 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getMyBooks()
+
     this.setLoading(true);
     this.bookService.getBooks(this.page, this.limit).subscribe(books => {
       this.setLoading(false)
-      this.books = books;
+      this.books = books.filter(book => book.avaible === true);
     }, error => this.setLoading(false));
+  }
+
+  getMyBooks(){
+    this.bookService.getMyBooks().subscribe(books => {
+      this.myBooks = books;
+    })
   }
 
   navigate(path:string){

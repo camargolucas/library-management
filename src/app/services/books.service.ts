@@ -34,4 +34,8 @@ export class BooksService {
     return this.http.put(`${this.API_URL}/books/updateAvaibleBook`, book);
   }
 
+  getMyBooks(){
+    return this.http.get<Array<Books>>(`${this.API_URL}/books/myBooks`);
+  }
+
 }

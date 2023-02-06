@@ -15,10 +15,12 @@
   :root {
     --text-color: #eee;
     --bkg-color: #252222;
+    --bkg-color-light:#3e3e3e;
     --btn-txt-color: #eee;
     --btn-bg-color: #007daa;
     --btn-bg-invisible:#f7f7f700;
     --primary-color: #007daa;
+
     --default-book-width:100px;
     --default-book-height:150px;
   }
@@ -64,7 +66,7 @@
     border-radius: 8px;
     color: var(--btn-txt-color);
     background-color: var(--btn-bg-color);
-    font-size: 12px;
+    font-size: 14px;
     touch-action: manipulation;
 
     &:disabled{
@@ -202,6 +204,6 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   height: 35px;
   display: flex;
   align-items: center;
-  font-size: 12px;
+  font-size: 14px;
   min-height: 0 !important;
 }

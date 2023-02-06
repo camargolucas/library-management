@@ -6,5 +6,8 @@
 </div>
 <div class="buttons" mat-dialog-actions>
     <button (click)="onNoClick()" class="invisible">Cancelar</button>
-    <button [disabled]="saving" (click)="loanBook()" cdkFocusInitial>Pegar emprestado</button>
+    <button *ngIf="!saving" (click)="loanBook()" cdkFocusInitial>Pegar emprestado</button>
+    <div *ngIf="saving" class="loader-content">
+        <div class="custom-loader"></div>
+    </div>
 </div>
