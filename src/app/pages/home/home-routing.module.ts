@@ -6,10 +6,6 @@ import { HomeComponent } from './home.component';
 const routes: Routes = [
   {
     path: '',
-    redirectTo:'home'
-  },
-  {
-    path: 'home',
     component: HomeComponent
 
   },
