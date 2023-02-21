@@ -5,6 +5,7 @@
 export const environment = {
   production: false,
   API_URL: 'https://library-app-f26ca.web.app',
+  //API_URL: 'http://localhost:5000',
   URL_BUCKET: 'https://firebasestorage.googleapis.com/v0/b/library-app-f26ca.appspot.com/o'
 };
 

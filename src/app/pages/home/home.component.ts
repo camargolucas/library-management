@@ -4,6 +4,8 @@ import { BooksService } from 'src/app/services/books.service';
 import { getStorage, ref } from '@firebase/storage'
 import { environment } from 'src/environments/environment';
 import packageJson from 'package.json';
+import { Router } from '@angular/router';
+
 
 
 @Component({
@@ -15,23 +17,36 @@ export class HomeComponent implements OnInit {
   URL_BUCKET = environment.URL_BUCKET;
   books: Array<Books> = [];
   version: string = packageJson.version;
+  page:number = 1;
+  limit:number=5;
+  loading = false;
+  myBooks: Array<Books> = [];
 
-  constructor(private bookService: BooksService) { }
 
+  constructor(private bookService: BooksService, private router: Router) { }
 
-  ngOnInit(): void {
-    this.bookService.getBooks().subscribe(books => {
-      this.books = books;
-    });
+  setLoading(loading:boolean){
+    this.loading = loading;
   }
 
+  ngOnInit(): void {
+    this.getMyBooks()
 
-  firebaseDownload() {
-    const storage = getStorage();
-    const pathRef = ref(storage, 'books/cristianismo_puro_e_simples.webp')
+    this.setLoading(true);
+    this.bookService.getBooks(this.page, this.limit).subscribe(books => {
+      this.setLoading(false)
+      this.books = books.filter(book => book.avaible === true);
+    }, error => this.setLoading(false));
+  }
 
-    const gsReference = ref(storage, 'gs://library-app-f26ca.appspot.com/books/cristianismo_puro_e_simples.webp')
-    const httpsReference = ref(storage, 'https://firebasestorage.googleapis.com/v0/b/library-app-f26ca.appspot.com/o/books%2Fcristianismo_puro_e_simples.webp')
+  getMyBooks(){
+    this.bookService.getMyBooks().subscribe(books => {
+      this.myBooks = books;
+    })
+  }
+
+  navigate(path:string){
+      this.router.navigate([`/${path}`], { replaceUrl: true });
   }
 
 }
