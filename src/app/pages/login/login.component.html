@@ -1,7 +1,7 @@
 <div class="content">
 
     <section>
-        <h4>Bem vindo a nossa biblioteca</h4>
+        <h4>{{signUpMode? 'Preencha os campos para se cadastrar'  : 'Bem vindo a nossa biblioteca'}}</h4>
     </section>
 
     <section class="field-section">
@@ -14,11 +14,14 @@
                 <input maxlength="14" mask="CPF_CNPJ" placeholder="Seu CPF" formControlName="cpf">
                 <span *ngIf="getFormControl('cpf').invalid && getFormControl('cpf').touched">Campo inválido, preencha corretamente</span>
             </div>
+            <p *ngIf="!signUpMode" (click)="setSignupMode(true)">Cadastre-se</p>
         </form>
     </section>
 
+
+
     <section class="button-section">
-        <button (click)="validateForm()">Entrar </button>
+        <button (click)="validateForm()"> {{signUpMode ? 'Cadastrar' : 'Entrar'}} </button>
     </section>
     <section class="footer-section">
         <div class="image-logo">
