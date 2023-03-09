@@ -1,0 +1,32 @@
+<div class="content">
+
+    <section>
+        <h4>{{signUpMode? 'Preencha os campos para se cadastrar'  : 'Bem vindo a nossa biblioteca'}}</h4>
+    </section>
+
+    <section class="field-section">
+        <form class="form" [formGroup]="formGroup">
+            <div class="div-input">
+                <input maxlength="40" placeholder="Seu nome" formControlName="name">
+                <span *ngIf="getFormControl('name').invalid && getFormControl('name').touched" style="color: red;">Campo inválido, preencha corretamente!</span>
+            </div>
+            <div class="div-input">
+                <input maxlength="14" mask="CPF_CNPJ" placeholder="Seu CPF" formControlName="cpf">
+                <span *ngIf="getFormControl('cpf').invalid && getFormControl('cpf').touched">Campo inválido, preencha corretamente</span>
+            </div>
+            <p *ngIf="!signUpMode" (click)="setSignupMode(true)">Cadastre-se</p>
+        </form>
+    </section>
+
+
+
+    <section class="button-section">
+        <button (click)="validateForm()"> {{signUpMode ? 'Cadastrar' : 'Entrar'}} </button>
+    </section>
+    <section class="footer-section">
+        <div class="image-logo">
+            <img class="logo-ipvn" title="logo-ipvn" src="/assets/images/ipvn-solo-logo.png">    
+            <p>v{{version}}</p>      
+        </div>
+    </section>
+</div>

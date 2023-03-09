@@ -46,7 +46,7 @@ export class HomeComponent implements OnInit {
   }
 
   navigate(path:string){
-      this.router.navigate([`/${path}`], { replaceUrl: true });
+      this.router.navigate([`/home/${path}`], { replaceUrl: true });
   }
 
 }

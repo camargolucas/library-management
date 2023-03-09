@@ -1,133 +1,143 @@
 @font-face {
-    font-family: 'IBM Plex Mono';
-    src: url('./assets/fonts/IBM/IBMPlexMono-Regular.ttf');
-  
-    font-family: 'IBM Plex Mono Bold';
-    src: url('./assets/fonts/IBM/IBMPlexMono-Bold.ttf');
-  
-    
-    font-family: 'IBM Plex Mono Italic';
-    src: url('./assets/fonts/IBM/IBMPlexMono-Italic.ttf');
-  }
-  
-  
-  /* You can add global styles to this file, and also import other style files */
-  :root {
-    --text-color: #eee;
-    --bkg-color: #252222;
-    --bkg-color-light:#3e3e3e;
-    --btn-txt-color: #eee;
-    --btn-bg-color: #007daa;
-    --btn-bg-invisible:#f7f7f700;
-    --primary-color: #007daa;
+  font-family: "IBM Plex Mono";
+  src: url("./assets/fonts/IBM/IBMPlexMono-Regular.ttf");
 
-    --default-book-width:100px;
-    --default-book-height:150px;
-  }
+  font-family: "IBM Plex Mono Bold";
+  src: url("./assets/fonts/IBM/IBMPlexMono-Bold.ttf");
 
-  input{
-    touch-action: manipulation;
-  }
-  
-  
-  * {
-    touch-action: manipulation;
-    font-family: 'IBM Plex Mono', 'Courier New', monospace;
-  }
-  
-  body {
-    background-color: var(--bkg-color);
-    overflow-x: hidden;
-  }
-  
-  h1,
-  h2,
-  h3,
-  h4,
-  p {
-    color: var(--text-color);
+  font-family: "IBM Plex Mono Italic";
+  src: url("./assets/fonts/IBM/IBMPlexMono-Italic.ttf");
+}
 
-    &.primary{
-      color: var(--primary-color);
-    }
+/* You can add global styles to this file, and also import other style files */
+:root {
+  --text-color: #eee;
+  --bkg-color: #252222;
+  --bkg-color-light: #3e3e3e;
+  --btn-txt-color: #eee;
+  --btn-bg-color: #007daa;
+  --btn-bg-invisible: #f7f7f700;
+  --primary-color: #007daa;
+  --danger-color: #a30000;
 
-    &.back-button{
-      color: var(--primary-color);
-      margin:0;
-      font-size:14px;
-      //position: absolute;
-      top: 10px;
-      left: 5px;
-    }
-  }
-  button {
-    padding: 5px;
-    border: none;
-    border-radius: 8px;
-    color: var(--btn-txt-color);
-    background-color: var(--btn-bg-color);
-    font-size: 14px;
-    touch-action: manipulation;
+  --default-book-width: 100px;
+  --default-book-height: 150px;
 
-    &:disabled{
-     background: #8d8d8d !important;
-    }
-  
-  
-    &.invisible{
-      padding: 5px;
-      border: none; 
-      color: var(--btn-txt-color);
-      background-color: var(--btn-bg-invisible);
-    }
-  }
-  
-  .default-content{
-    margin: 1rem 1.5rem;
-    max-width: 500px;
-  }
+  --default-font-size: 14px;
+}
 
-  .custom-loader {
-    width:30px;
-    height:10px;
-    display: grid;
+input {
+  touch-action: manipulation;
+}
+
+* {
+  touch-action: manipulation;
+  font-family: "IBM Plex Mono", "Courier New", monospace;
+}
+
+body {
+  background-color: var(--bkg-color);
+  overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+h4,
+p {
+  color: var(--text-color);
+
+  &.primary {
     color: var(--primary-color);
   }
 
+  &.back-button {
+    color: var(--primary-color);
+    margin: 0;
+    font-size: 14px;
+    //position: absolute;
+    top: 10px;
+    left: 5px;
+  }
+}
+button {
+  padding: 5px;
+  border: none;
+  border-radius: 8px;
+  color: var(--btn-txt-color);
+  background-color: var(--btn-bg-color);
+  font-size: 14px;
+  touch-action: manipulation;
 
- 
-  
-  .custom-loader:before,
-  .custom-loader:after {
-    content: "";
-    grid-area: 1/1;
-    --c1:linear-gradient(90deg,#0000 calc(100%/3),currentColor 0 calc(2*100%/3),#0000 0);
-    --c2:linear-gradient( 0deg,#0000 calc(100%/3),currentColor 0 calc(2*100%/3),#0000 0);
-    background:
-      var(--c1),
-      var(--c2),
-      var(--c1),
-      var(--c2);
-    background-size:300% 2px,2px 300%;
-    background-repeat: no-repeat;
-    animation: l5 1.5s infinite;
+  &:disabled {
+    background: #8d8d8d !important;
   }
-  .custom-loader:after {
-    animation-delay: -.75s;
-  }
-  
-  @keyframes l5 {
-    0%   {background-position: 50%  0,100% 100%,0    100%,0 0}
-    25%  {background-position: 0    0,100% 50% ,0    100%,0 0}
-    50%  {background-position: 0    0,100% 0   ,50%  100%,0 0}
-    75%  {background-position: 0    0,100% 0   ,100% 100%,0 50%}
-   75.01%{background-position: 100% 0,100% 0   ,100% 100%,0 50%}
-    100% {background-position: 50%  0,100% 0   ,100% 100%,0 100%}
-  }
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
-.cdk-overlay-container{
+  &.invisible {
+    padding: 5px;
+    border: none;
+    color: var(--btn-txt-color);
+    background-color: var(--btn-bg-invisible);
+  }
+}
+
+.default-content {
+  margin: 1rem 1.5rem;
+  max-width: 500px;
+}
+
+.custom-loader {
+  width: 30px;
+  height: 10px;
+  display: grid;
+  color: var(--primary-color);
+}
+
+.custom-loader:before,
+.custom-loader:after {
+  content: "";
+  grid-area: 1/1;
+  --c1: linear-gradient(90deg, #0000 calc(100% / 3), currentColor 0 calc(2 * 100% / 3), #0000 0);
+  --c2: linear-gradient(0deg, #0000 calc(100% / 3), currentColor 0 calc(2 * 100% / 3), #0000 0);
+  background: var(--c1), var(--c2), var(--c1), var(--c2);
+  background-size: 300% 2px, 2px 300%;
+  background-repeat: no-repeat;
+  animation: l5 1.5s infinite;
+}
+.custom-loader:after {
+  animation-delay: -0.75s;
+}
+
+@keyframes l5 {
+  0% {
+    background-position: 50% 0, 100% 100%, 0 100%, 0 0;
+  }
+  25% {
+    background-position: 0 0, 100% 50%, 0 100%, 0 0;
+  }
+  50% {
+    background-position: 0 0, 100% 0, 50% 100%, 0 0;
+  }
+  75% {
+    background-position: 0 0, 100% 0, 100% 100%, 0 50%;
+  }
+  75.01% {
+    background-position: 100% 0, 100% 0, 100% 100%, 0 50%;
+  }
+  100% {
+    background-position: 50% 0, 100% 0, 100% 100%, 0 100%;
+  }
+}
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.cdk-overlay-container {
   position: fixed;
   z-index: 1000;
   pointer-events: none;
@@ -136,7 +146,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   height: 100%;
   width: 100%;
 }
-.cdk-visually-hidden{
+.cdk-visually-hidden {
   border: 0;
   clip: rect(0 0 0 0);
   height: 1px;
@@ -151,7 +161,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   -moz-appearance: none;
   left: 0;
 }
-.cdk-global-overlay-wrapper{
+.cdk-global-overlay-wrapper {
   display: flex;
   position: absolute;
   z-index: 1000;
@@ -161,7 +171,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   height: 100%;
   width: 100%;
 }
-.cdk-overlay-pane{
+.cdk-overlay-pane {
   background: var(--bkg-color);
   position: absolute;
   pointer-events: auto;
@@ -171,34 +181,32 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   max-width: 100%;
   max-height: 100%;
 }
-.cdk-overlay-dark-backdrop{
-  background: rgba(0,0,0,.52);
+.cdk-overlay-dark-backdrop {
+  background: rgba(0, 0, 0, 0.52);
 }
-.cdk-overlay-backdrop{
+.cdk-overlay-backdrop {
   position: absolute;
   inset: 0;
   z-index: 1000;
   pointer-events: auto;
   -webkit-tap-highlight-color: transparent;
-  transition: opacity .4s cubic-bezier(.25,.8,.25,1);
+  transition: opacity 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
   opacity: 0;
 }
 
-.cdk-overlay-backdrop-noop-animation{
+.cdk-overlay-backdrop-noop-animation {
   transition: none;
 }
 
-.cdk-overlay-backdrop.cdk-overlay-backdrop-showing{
+.cdk-overlay-backdrop.cdk-overlay-backdrop-showing {
   opacity: 1;
 }
 
-
-
-.mat-snack-bar-handset{
+.mat-snack-bar-handset {
   background: none;
 }
 
-.mat-snack-bar-handset .mat-snack-bar-container{
+.mat-snack-bar-handset .mat-snack-bar-container {
   margin: 1rem !important;
   background: var(--primary-color);
   height: 35px;
