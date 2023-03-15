@@ -3,7 +3,9 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import packageJson from 'package.json';
 import { User } from 'src/app/interface/user';
+import { UserResponse } from 'src/app/interface/userResponse';
 import { UserService } from 'src/app/services/user.service';
+import { UtilsService } from 'src/app/services/utils.service';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +18,7 @@ export class LoginComponent implements OnInit {
   signUpMode: boolean = false;
 
 
-  constructor(private router: Router, private userService: UserService) {
+  constructor(private router: Router, private userService: UserService, private utilsService:UtilsService) {
 
     this.formGroup = new FormGroup({
       name: new FormControl('', Validators.required),
@@ -33,28 +35,49 @@ export class LoginComponent implements OnInit {
   }
 
   validateForm() {
-    const controls = ['name', 'cpf'];
+    const controls = this.signUpMode ? ['name', 'cpf'] : ['cpf'];
     const fmControls = this.formGroup.controls;
-    if (this.formGroup.invalid) {
-      controls.forEach(control => {
-        if (fmControls[control].invalid) {
-          fmControls[control].markAsDirty()
-          fmControls[control].markAsTouched()
-        }
-      });
-    } else {
-      const user:User = this.formGroup.value;
-      this.login(user);
+
+    for (const control of controls) {
+      if (fmControls[control].invalid) {
+        fmControls[control].markAsDirty()
+        fmControls[control].markAsTouched()
+        return
+      }
+    }
+
+    const user: User = this.formGroup.value;
+    this.signUpMode ? this.signUp(user) : this.login(user);
+
+  }
+
+  validateUser(userResp: UserResponse) {
+    if (userResp && Object.keys(userResp).length > 0) {
+      if(userResp['success']){
+        this.navigate('home');
+      }else{
+        this.utilsService.openSnackBar(userResp.error? userResp.error : 'Houve um problema');
+      }
     }
   }
 
 
+  signUp(user: User) {
+    this.userService.signUp(user)
+      .subscribe((resp:UserResponse) => {
+        this.validateUser(resp)
+      }, error => {
+        console.error(error);
+        this.utilsService.openSnackBar('Houve um problema');
+      })
+  }
+
 
   login(user: User) {
     this.userService.login(user)
-      .subscribe(ret => {
-        console.log(ret);
-        this.navigate('')
+      .subscribe((resp:UserResponse) => {
+        this.validateUser(resp);
+
       }, error => {
 
       })

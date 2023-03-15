@@ -6,7 +6,7 @@
 
     <section class="field-section">
         <form class="form" [formGroup]="formGroup">
-            <div class="div-input">
+            <div *ngIf="signUpMode" class="div-input">
                 <input maxlength="40" placeholder="Seu nome" formControlName="name">
                 <span *ngIf="getFormControl('name').invalid && getFormControl('name').touched" style="color: red;">Campo inválido, preencha corretamente!</span>
             </div>
@@ -21,7 +21,8 @@
 
 
     <section class="button-section">
-        <button (click)="validateForm()"> {{signUpMode ? 'Cadastrar' : 'Entrar'}} </button>
+        <button style="margin-bottom: 1rem;" (click)="validateForm()"> {{signUpMode ? 'Cadastrar' : 'Entrar'}} </button>
+        <button (click)="setSignupMode(false)"  *ngIf="signUpMode"> Voltar </button>
     </section>
     <section class="footer-section">
         <div class="image-logo">
