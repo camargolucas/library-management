@@ -21,8 +21,11 @@
 
 
     <section class="button-section">
-        <button style="margin-bottom: 1rem;" (click)="validateForm()"> {{signUpMode ? 'Cadastrar' : 'Entrar'}} </button>
-        <button (click)="setSignupMode(false)"  *ngIf="signUpMode"> Voltar </button>
+        <button *ngIf="!loading" (click)="validateForm()"> {{signUpMode ? 'Cadastrar' : 'Entrar'}} </button>
+        <div *ngIf="loading" class="loader-content">
+            <div class="custom-loader"></div>
+        </div>
+        <button style="margin-top: 1rem;" (click)="setSignupMode(false)"  *ngIf="signUpMode"> Voltar </button>
     </section>
     <section class="footer-section">
         <div class="image-logo">

@@ -5,6 +5,8 @@ import { getStorage, ref } from '@firebase/storage'
 import { environment } from 'src/environments/environment';
 import packageJson from 'package.json';
 import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { GenericDialogComponent } from 'src/app/components/generic-dialog/generic-dialog.component';
 
 
 
@@ -17,15 +19,15 @@ export class HomeComponent implements OnInit {
   URL_BUCKET = environment.URL_BUCKET;
   books: Array<Books> = [];
   version: string = packageJson.version;
-  page:number = 1;
-  limit:number=5;
+  page: number = 1;
+  limit: number = 5;
   loading = false;
   myBooks: Array<Books> = [];
 
 
-  constructor(private bookService: BooksService, private router: Router) { }
+  constructor(private bookService: BooksService, private router: Router, public dialog: MatDialog) { }
 
-  setLoading(loading:boolean){
+  setLoading(loading: boolean) {
     this.loading = loading;
   }
 
@@ -39,14 +41,31 @@ export class HomeComponent implements OnInit {
     }, error => this.setLoading(false));
   }
 
-  getMyBooks(){
+  openDialog(): void {
+    const dialogRef = this.dialog.open(GenericDialogComponent, {
+      data: {
+
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {      
+      
+    });
+  }
+
+  getMyBooks() {
     this.bookService.getMyBooks().subscribe(books => {
       this.myBooks = books;
     })
   }
 
-  navigate(path:string){
-      this.router.navigate([`/home/${path}`], { replaceUrl: true });
+  logout() {
+    this.openDialog()
+    //this.router.navigate([`/login`], { replaceUrl: true })
+  }
+
+  navigate(path: string) {
+    this.router.navigate([`/home/${path}`], { replaceUrl: true });
   }
 
 }

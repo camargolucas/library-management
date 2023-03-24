@@ -16,9 +16,9 @@ export class LoginComponent implements OnInit {
   version: string = packageJson.version;
   formGroup: FormGroup;
   signUpMode: boolean = false;
+  loading: boolean = false;
 
-
-  constructor(private router: Router, private userService: UserService, private utilsService:UtilsService) {
+  constructor(private router: Router, private userService: UserService, private utilsService: UtilsService) {
 
     this.formGroup = new FormGroup({
       name: new FormControl('', Validators.required),
@@ -30,33 +30,48 @@ export class LoginComponent implements OnInit {
 
   }
 
+
+
+  setLoading(load: boolean) {
+    this.loading = load;
+  }
+
   setSignupMode(mode: boolean) {
+    this.formGroup.reset();
     this.signUpMode = mode;
   }
 
   validateForm() {
-    const controls = this.signUpMode ? ['name', 'cpf'] : ['cpf'];
-    const fmControls = this.formGroup.controls;
+    this.setLoading(true);
+    try {
 
-    for (const control of controls) {
-      if (fmControls[control].invalid) {
-        fmControls[control].markAsDirty()
-        fmControls[control].markAsTouched()
-        return
+      const controls = this.signUpMode ? ['name', 'cpf'] : ['cpf'];
+      const fmControls = this.formGroup.controls;
+
+      for (const control of controls) {
+        if (fmControls[control].invalid) {
+          fmControls[control].markAsDirty()
+          fmControls[control].markAsTouched()
+          this.setLoading(false);
+          return
+        }
       }
+
+      const user: User = this.formGroup.value;
+      this.signUpMode ? this.signUp(user) : this.login(user);
+
+    } catch (error) {
+      this.setLoading(false);
     }
-
-    const user: User = this.formGroup.value;
-    this.signUpMode ? this.signUp(user) : this.login(user);
-
   }
 
   validateUser(userResp: UserResponse) {
+    this.setLoading(false);
     if (userResp && Object.keys(userResp).length > 0) {
-      if(userResp['success']){
+      if (userResp['success']) {
         this.navigate('home');
-      }else{
-        this.utilsService.openSnackBar(userResp.error? userResp.error : 'Houve um problema');
+      } else {
+        this.utilsService.openSnackBar(userResp.error ? userResp.error : 'Houve um problema');
       }
     }
   }
@@ -64,10 +79,11 @@ export class LoginComponent implements OnInit {
 
   signUp(user: User) {
     this.userService.signUp(user)
-      .subscribe((resp:UserResponse) => {
+      .subscribe((resp: UserResponse) => {
         this.validateUser(resp)
       }, error => {
         console.error(error);
+        this.setLoading(false);
         this.utilsService.openSnackBar('Houve um problema');
       })
   }
@@ -75,11 +91,12 @@ export class LoginComponent implements OnInit {
 
   login(user: User) {
     this.userService.login(user)
-      .subscribe((resp:UserResponse) => {
+      .subscribe((resp: UserResponse) => {
         this.validateUser(resp);
 
       }, error => {
-
+        this.setLoading(false);
+        this.utilsService.openSnackBar('Houve um problema');
       })
 
   }
