@@ -1,0 +1,15 @@
+<section class="back-section">
+    <p (click)="back()" class="back-button">Voltar</p>
+    <p (click)="devolution()" class="devolution">Devolver</p>
+</section>
+
+<section class="book-image-section">
+    <img src="{{URL_BUCKET}}/books%2F{{book?.frontImage}}.webp?alt=media">
+</section>
+
+<section class="book-description-section">
+    <p><strong>Livro {{book?.name}}</strong></p>
+    <p>Autor {{book?.author}}</p>
+    <p>Editora {{book?.editor}}</p>
+    <p>Tema {{book?.theme}}</p>
+</section>

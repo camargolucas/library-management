@@ -1,0 +1,72 @@
+.content {
+    overflow: hidden;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    margin: 0 2rem;
+}
+
+.div-input {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+
+    span {
+        font-size: 12px;
+        margin-top: 5px;
+        color: var(--danger-color);
+        bottom: -20px;
+        position: absolute;
+    }
+
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    height: 200px;
+    justify-content: space-evenly;
+    max-width: 300px;
+    min-width: 280px;
+    input {
+        outline: none;
+        border: none;
+        border-radius: 5px;
+        height: 30px;
+        padding: 5px 10px;
+        font-size: 16px;
+    }
+}
+
+.button-section {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    button {
+        width: 100%;
+    }
+}
+
+.footer-section {
+    width: 100%;
+    position: relative;
+
+    .image-logo {
+        display: flex;
+        align-items: end;
+        position: absolute;
+        left: 0;
+        .logo-ipvn {
+            max-width: 25px;
+        }
+        p {
+            margin: 0;
+            font-size: 10px;
+            margin-left: 10px;
+        }
+    }
+}

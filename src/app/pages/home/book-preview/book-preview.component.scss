@@ -1,0 +1,29 @@
+
+.book-image-section{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2rem;
+    img {
+        width: 200px;
+        height: 300px;
+    }
+    
+
+}
+
+.devolution{
+    color:var(--danger-color)
+}
+
+.back-section{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0.5rem;
+}
+
+
+.book-description-section{
+    margin: 3rem 1.5rem;
+}
