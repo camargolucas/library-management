@@ -24,7 +24,7 @@ export class LibraryBooksComponent implements OnInit {
 
 
   constructor(private router: Router, private booksService: BooksService, public dialog: MatDialog,
-    private utilsService:UtilsService) { }
+    private utilsService: UtilsService) { }
 
   ngOnInit(): void {
     this.loadBooks();
@@ -43,7 +43,9 @@ export class LibraryBooksComponent implements OnInit {
       });
   }
 
-  openDialog(book:Books): void {
+  openDialog(book: Books): void {
+    if (!book.avaible) return
+    console.log(book)
     const dialogRef = this.dialog.open(DialogOrderBook, {
       data: {
         book: book
@@ -51,11 +53,11 @@ export class LibraryBooksComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if(result && result['modifiedCount'] > 0){
+      if (result) {
         this.loadBooks();
         this.utilsService.openSnackBar("Livro emprestado com sucesso!")
       };
-      
+
     });
   }
 

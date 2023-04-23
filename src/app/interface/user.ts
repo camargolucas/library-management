@@ -6,7 +6,8 @@ export interface User {
     cpf: string,
     books?: Array<Books>,
     createdAt?:Date,
-    updatedAt?:Date
+    updatedAt?:Date,
+    _id:string
 }
 
 

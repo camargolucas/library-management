@@ -9,7 +9,7 @@
                 <div class="custom-loader"></div>
             </div>
 
-            <div *ngFor="let book of books" class="highlight-books">
+            <div (click)="orderBook(book)" *ngFor="let book of books" class="highlight-books">
 
                 <img *ngIf="!loading" src="{{URL_BUCKET}}/books%2F{{book.frontImage}}.webp?alt=media">
 
@@ -26,15 +26,15 @@
             <div *ngIf="loading" class="loader-content">
                 <div class="custom-loader"></div>
             </div>
-            <div *ngFor="let book of myBooks" class="highlight-books">
+            <div (click)="previewBook(book)" *ngFor="let book of myBooks" class="highlight-books">
 
                 <img src="{{URL_BUCKET}}/books%2F{{book.frontImage}}.webp?alt=media">
 
             </div>
         </div>
-        <button class="more invisible">
+       <!--  <button class="more invisible">
             Veja mais
-        </button>
+        </button> -->
     </section>
     <section>
         <div class="image-logo">

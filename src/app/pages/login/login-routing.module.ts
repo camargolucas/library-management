@@ -6,16 +6,8 @@ import { LoginComponent } from "./login.component";
 const routes:Routes = [
     {
         path:'',
-        redirectTo:'login'
-    },
-    {
-        path:'login',
         component: LoginComponent
-    },
-    {
-        path:'home',
-        loadChildren: () => import('../home/home.module').then(m => m.HomeModule)
-    }
+    }   
 ]
 
 @NgModule({

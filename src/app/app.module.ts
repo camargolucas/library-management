@@ -12,13 +12,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SnackBarComponent } from './components/snack-bar/snack-bar/snack-bar.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { GenericDialogComponent } from './components/generic-dialog/generic-dialog.component';
+import { BookDevolutionComponent } from './components/book-devolution/book-devolution.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     SnackBarComponent,
-    GenericDialogComponent
+    GenericDialogComponent,
+    BookDevolutionComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),

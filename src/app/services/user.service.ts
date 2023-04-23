@@ -11,15 +11,37 @@ export class UserService {
 
   private API_URL: string = environment.API_URL;
 
-  constructor(private http:HttpClient) { }
+  constructor(private http: HttpClient) { }
 
 
-  login(user:User){
+  login(user: User) {
     return this.http.post<UserResponse>(`${this.API_URL}/login`, user);
   }
 
-  signUp(user:User){
+  signUp(user: User) {
     return this.http.post<UserResponse>(`${this.API_URL}/user`, user);
+  }
+
+  updateUserStorage(user:User){
+    try {
+      localStorage.setItem('user', JSON.stringify(user));
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  getUser(): User {
+    try {
+      const user = localStorage.getItem('user');
+      if (user) {
+        return JSON.parse(user);
+      } else {
+        return {} as User;
+      }
+
+    } catch (error) {
+      return {} as User
+    }
   }
 
 }

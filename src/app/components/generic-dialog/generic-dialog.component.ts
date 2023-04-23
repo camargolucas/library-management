@@ -22,6 +22,7 @@ export class GenericDialogComponent implements OnInit {
   }
   logout(){
     this.dialogRef.close();
+    localStorage.clear();
     this.route.navigate(['login'], { replaceUrl: true })
   }
 

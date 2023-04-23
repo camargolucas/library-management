@@ -70,12 +70,21 @@ export class LoginComponent implements OnInit {
     if (userResp && Object.keys(userResp).length > 0) {
       if (userResp['success']) {
         this.navigate('home');
+        this.addToStorage(userResp['user']);
       } else {
         this.utilsService.openSnackBar(userResp.error ? userResp.error : 'Houve um problema');
       }
     }
   }
 
+  addToStorage(user:User){
+    try {
+      const formatedUser = JSON.stringify(user);
+      localStorage.setItem('user', formatedUser)
+    } catch (error) {
+      console.error(error)
+    }
+  }
 
   signUp(user: User) {
     this.userService.signUp(user)

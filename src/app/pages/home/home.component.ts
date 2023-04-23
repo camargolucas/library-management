@@ -7,6 +7,8 @@ import packageJson from 'package.json';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { GenericDialogComponent } from 'src/app/components/generic-dialog/generic-dialog.component';
+import { BookDevolutionComponent } from 'src/app/components/book-devolution/book-devolution.component';
+import { DialogOrderBook } from 'src/app/components/dialog-order-book/dialog-order-book.component';
 
 
 
@@ -32,14 +34,15 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getMyBooks()
-
-    this.setLoading(true);
-    this.bookService.getBooks(this.page, this.limit).subscribe(books => {
-      this.setLoading(false)
-      this.books = books.filter(book => book.avaible === true);
-    }, error => this.setLoading(false));
+    this.getBooks()
   }
+
+  getBooks() {
+    this.setLoading(true);
+    this.getMyBooks()
+    this.getAvaibleBooks()
+  }
+
 
   openDialog(): void {
     const dialogRef = this.dialog.open(GenericDialogComponent, {
@@ -48,15 +51,46 @@ export class HomeComponent implements OnInit {
       }
     });
 
-    dialogRef.afterClosed().subscribe(result => {      
-      
+    dialogRef.afterClosed().subscribe(result => {
+
     });
+  }
+
+  getAvaibleBooks() {
+    this.bookService.getBooks(this.page, this.limit).subscribe(books => {
+      this.setLoading(false)
+      this.books = books.filter(book => book.avaible === true);
+    }, error => this.setLoading(false));
   }
 
   getMyBooks() {
     this.bookService.getMyBooks().subscribe(books => {
+      console.log(books)
       this.myBooks = books;
     })
+  }
+
+  orderBook(book:Books){
+    const dialogRef = this.dialog.open(DialogOrderBook, {
+      data: {
+        book: book
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.getBooks();
+    });
+  }
+
+  previewBook(book: Books, ) {
+
+    const dialogRef = this.dialog.open(BookDevolutionComponent, {
+      data: book
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.getBooks();
+    });
   }
 
   logout() {
